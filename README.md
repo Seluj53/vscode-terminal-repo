@@ -1,1 +1,10 @@
-Exposes the command `terminalHere.create` that creates a terminal at the current file's directory. This can be accessed through the command palette (<kbd>ctrl</kbd>/<kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>) or by attaching a [custom keybinding](https://code.visualstudio.com/docs/customization/keybindings) to it.
+# Vscode Terminal Repo
+
+This extension provides a simple terminal panel that opens a terminal window in the current repo (git) of the VS Code repository.
+
+## Features
+
+This extension provides the following actions:
+
+- `Terminal Repo: Create Terminal` command to create (always) a terminal panel for the current git repo.
+- `Terminal Repo: Open Terminal` command to open (or create if it doesn't exist yet) the terminal panel for the current git repo.

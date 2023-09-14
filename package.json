@@ -1,45 +1,47 @@
 {
-    "name": "vscode-terminal-here",
-    "displayName": "Terminal Here",
-    "description": "Creates an integrated terminal session at the current file's directory",
-    "version": "0.2.4",
-    "publisher": "Tyriar",
-    "engines": {
-        "vscode": "^1.37.0"
-    },
-    "extensionKind": "workspace",
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "*"
-    ],
-    "bugs": {
-        "url": "https://github.com/Tyriar/vscode-terminal-here/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Tyriar/vscode-terminal-here"
-    },
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "terminalHere.create",
-                "title": "Terminal Here: Create Terminal"
-            }
-        ]
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "@types/mocha": "^2.2.42",
-        "@types/node": "^7.0.43",
-        "@types/vscode": "1.37",
-        "typescript": "3.5.2"
-    }
+  "name": "vscode-terminal-repo",
+  "displayName": "Terminal Repo",
+  "description": "Create or open terminals at the current file git repo",
+  "version": "0.1.0",
+  "publisher": "Seluj53",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "extensionKind": [
+    "ui"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "bugs": {
+    "url": "https://github.com/Seluj53/vscode-terminal-repo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Seluj53/vscode-terminal-repo"
+  },
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "terminalRepo.create",
+        "title": "Terminal Repo: Create Terminal"
+      },
+      {
+        "command": "terminalRepo.open",
+        "title": "Terminal Repo: Open Terminal"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.0",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.2.2"
+  }
 }
