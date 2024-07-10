@@ -52,4 +52,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposableCreate, disposableOpen);
 }
 
-export function deactivate() {}
+export function deactivate() { }
