@@ -1,12 +1,15 @@
 {
   "name": "vscode-terminal-repo",
   "displayName": "Terminal Repo",
-  "description": "Create or open terminals at the current file git repo",
-  "version": "0.1.0",
+  "description": "Create or open terminals based on the active opened editor. It matches the terminal with the git repository of the file.",
+  "version": "1.0.0",
   "publisher": "Seluj53",
   "engines": {
     "vscode": "^1.75.0"
   },
+  "extensionDependencies": [
+    "vscode.git"
+  ],
   "extensionKind": [
     "ui"
   ],
@@ -22,14 +25,22 @@
   },
   "main": "./out/src/extension",
   "contributes": {
+    "keybindings": [
+      {
+        "command": "terminalRepo.create",
+        "key": "cmd+equal"
+      }
+    ],
     "commands": [
       {
         "command": "terminalRepo.create",
-        "title": "Terminal Repo: Create Terminal"
+        "title": "TerminalRepo: Create new terminal",
+        "category": "Terminal"
       },
       {
         "command": "terminalRepo.open",
-        "title": "Terminal Repo: Open Terminal"
+        "title": "TerminalRepo: Open terminal or create",
+        "category": "Terminal"
       }
     ]
   },

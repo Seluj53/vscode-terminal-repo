@@ -1,31 +1,22 @@
 "use strict";
 
 import * as vscode from "vscode";
-import path = require("path");
-import fs = require("fs");
+import { GitExtension } from "./git";
+import * as path from "path";
 
-const MAX_DEPTH = 10;
-
-function findParentRepoPath(filePath: string) {
-  let i = 0;
-  let parent = path.dirname(filePath);
-  while (i < MAX_DEPTH) {
-    if (fs.existsSync(path.join(parent, ".git"))) {
-      return parent;
-    }
-    parent = path.dirname(parent);
-  }
-  return path.dirname(filePath);
-}
-
+const gitExtension = vscode.extensions.getExtension<GitExtension>('vscode.git').exports;
+const git = gitExtension.getAPI(1);
 export function activate(context: vscode.ExtensionContext) {
   const disposableCreate = vscode.commands.registerCommand(
     "terminalRepo.create",
     () => {
       let uri = vscode.window.activeTextEditor?.document?.uri;
       if (!uri) return;
+      let repo = git.getRepository(uri);
+      if (!repo) return;
       let terminal = vscode.window.createTerminal({
-        cwd: findParentRepoPath(uri.fsPath),
+        cwd: (repo.rootUri as vscode.Uri),
+        name: path.basename(repo.rootUri.path)
       });
       terminal.show(false);
     }
@@ -36,19 +27,19 @@ export function activate(context: vscode.ExtensionContext) {
     () => {
       let uri = vscode.window.activeTextEditor?.document?.uri;
       if (!uri) return;
-      const terminalPath = findParentRepoPath(uri.fsPath);
+      let repo = git.getRepository(uri);
+      if (!repo) return;
       let terminal =
         vscode.window.terminals.find(
-          (terminal) => terminal.name == path.basename(terminalPath)
+          (terminal) => terminal.name == path.basename(repo.rootUri.path)
         ) ||
         vscode.window.createTerminal({
-          cwd: terminalPath,
-          name: path.basename(terminalPath),
+          cwd: repo.rootUri.fsPath,
+          name: path.basename(repo.rootUri.path)
         });
       terminal.show(false);
     }
   );
-
   context.subscriptions.push(disposableCreate, disposableOpen);
 }
 
